@@ -1,10 +1,9 @@
-use clap::Args;
 use base64::{engine::general_purpose, Engine as _};
-
+use clap::Args;
 
 #[derive(Args, Debug)]
 pub struct Enb64Args {
-    toencode: Vec<String>
+    toencode: Vec<String>,
 }
 
 #[derive(Args, Debug)]

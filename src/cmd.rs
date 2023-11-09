@@ -1,11 +1,11 @@
 use clap::{Parser, Subcommand};
 
 use crate::b64;
-use crate::url;
 use crate::rot13;
+use crate::url;
 
 #[derive(Parser)]
-#[command(author = "Kevin K. <kbknapp@gmail.com>", version, about, long_about = None)]
+#[command(author = "hatsat32 <suleymanergen32@gmail.com>", version, about, long_about = None)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,

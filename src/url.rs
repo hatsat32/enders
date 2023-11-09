@@ -2,8 +2,6 @@ use urlencoding;
 
 use clap::Args;
 
-
-
 #[derive(Args, Debug)]
 pub struct EnurlArgs {
     pub toencode: Vec<String>,
@@ -15,14 +13,13 @@ pub struct EnurlArgs {
 
 #[derive(Args, Debug)]
 pub struct DeurlArgs {
-    pub todecode: String
+    pub todecode: String,
 }
-
 
 pub fn encode(args: EnurlArgs) {
     let toencode = args.toencode.join(" ");
     let all = args.all;
-    
+
     let encoded = urlencoding::encode(&toencode);
     println!("{}", encoded);
 
