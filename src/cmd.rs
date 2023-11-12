@@ -1,6 +1,11 @@
 use clap::{Parser, Subcommand};
 
+use ende;
+
 use crate::b64;
+use crate::b32;
+use crate::hex;
+use crate::html;
 use crate::rot13;
 use crate::url;
 
@@ -13,22 +18,46 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// b64 encode given param
+    /// base64 encode given text
     Enb64(b64::Enb64Args),
 
-    /// b64 encode given param
+    /// base64 encode given text
     Deb64(b64::Deb64Args),
 
-    /// URL encode given param
+    /// base32 encode given text
+    Enb32(b32::Enb32Args),
+
+    /// base32 encode given text
+    Deb32(b32::Deb32Args),
+
+    /// base16 encode given text
+    Enb16(ende::b16::EnB16Args),
+
+    /// base16 encode given text
+    Deb16(ende::b16::DeB16Args),
+
+    /// hex encode given text
+    Enhex(hex::EnHexArgs),
+
+    /// hex encode given text
+    Dehex(hex::DeHexArgs),
+
+    /// HTML encode given text
+    Enhtml(html::EnHtmlArgs),
+
+    /// HTML encode given text
+    Dehtml(html::DeHtmlArgs),
+
+    /// URL encode given text
     Enurl(url::EnurlArgs),
 
-    /// URL decode given param
+    /// URL decode given text
     Deurl(url::DeurlArgs),
 
-    /// Rot13 encode given param
+    /// Rot13 encode given text
     Enrot13(rot13::EnRot13Args),
 
-    /// Rot13 encode given param
+    /// Rot13 encode given text
     Derot13(rot13::DeRot13Args),
 }
 
@@ -45,18 +74,45 @@ pub fn run() {
         Commands::Enb64(args) => {
             crate::b64::encode(args);
         }
-
         Commands::Deb64(args) => {
             b64::decode(args);
+        }
+
+        Commands::Enb32(args) => {
+            crate::b32::encode(args);
+        }
+        Commands::Deb32(args) => {
+            crate::b32::decode(args);
+        }
+
+        Commands::Enb16(args) => {
+            ende::b16::encode(args);
+        }
+        Commands::Deb16(args) => {
+            ende::b16::decode(args);
+        }
+
+        Commands::Enhex(args) => {
+            crate::hex::encode(args);
+        }
+        Commands::Dehex(args) => {
+            crate::hex::decode(args);
+        }
+
+        Commands::Enhtml(args) => {
+            crate::html::encode(args);
+        }
+        Commands::Dehtml(args) => {
+            crate::html::decode(args);
         }
 
         Commands::Enurl(args) => {
             url::encode(args);
         }
-
         Commands::Deurl(args) => {
             url::decode(args);
         }
+
         Commands::Enrot13(args) => {
             rot13::encode(args);
         }
