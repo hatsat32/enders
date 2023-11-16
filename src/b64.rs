@@ -17,8 +17,7 @@ pub fn encode(enb64args: Enb64Args) {
 }
 
 pub fn decode(args: Deb64Args) {
-    let todecode = args.todecode;
-    let decoded = general_purpose::STANDARD_NO_PAD.decode(todecode).unwrap();
-    let string = String::from_utf8(decoded).expect("Our bytes should be valid utf8");
-    println!("{}", string);
+    let decoded = general_purpose::STANDARD_NO_PAD.decode(args.todecode).unwrap();
+    let decoded_str = String::from_utf8(decoded).expect("Our bytes should be valid utf8");
+    println!("{}", decoded_str);
 }

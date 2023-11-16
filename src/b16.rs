@@ -1,5 +1,4 @@
 use clap::Args;
-use base16;
 
 
 #[derive(Args, Debug)]
@@ -23,4 +22,3 @@ pub fn decode(args: DeB16Args) {
     let decoded_str = String::from_utf8(decoded).expect("Our bytes should be valid utf8");
     println!("{}", decoded_str);
 }
-

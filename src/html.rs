@@ -1,6 +1,4 @@
 use clap::Args;
-use html_escape;
-
 
 #[derive(Args, Debug)]
 pub struct EnHtmlArgs {

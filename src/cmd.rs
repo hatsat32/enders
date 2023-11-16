@@ -1,16 +1,21 @@
 use clap::{Parser, Subcommand};
 
-use ende;
-
-use crate::b64;
+use crate::b16;
 use crate::b32;
+use crate::b64;
 use crate::hex;
 use crate::html;
 use crate::rot13;
 use crate::url;
 
+/// Simple encode/decode tool written in rust!
 #[derive(Parser)]
-#[command(author = "hatsat32 <suleymanergen32@gmail.com>", version, about, long_about = None)]
+#[command(
+    author = "hatsat32 <suleymanergen32@gmail.com>",
+    version,
+    about,
+    long_about = None
+)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
@@ -31,10 +36,10 @@ enum Commands {
     Deb32(b32::Deb32Args),
 
     /// base16 encode given text
-    Enb16(ende::b16::EnB16Args),
+    Enb16(b16::EnB16Args),
 
     /// base16 encode given text
-    Deb16(ende::b16::DeB16Args),
+    Deb16(b16::DeB16Args),
 
     /// hex encode given text
     Enhex(hex::EnHexArgs),
@@ -72,38 +77,38 @@ pub fn run() {
 
     match cli.command {
         Commands::Enb64(args) => {
-            crate::b64::encode(args);
+            b64::encode(args);
         }
         Commands::Deb64(args) => {
             b64::decode(args);
         }
 
         Commands::Enb32(args) => {
-            crate::b32::encode(args);
+            b32::encode(args);
         }
         Commands::Deb32(args) => {
-            crate::b32::decode(args);
+            b32::decode(args);
         }
 
         Commands::Enb16(args) => {
-            ende::b16::encode(args);
+            b16::encode(args);
         }
         Commands::Deb16(args) => {
-            ende::b16::decode(args);
+            b16::decode(args);
         }
 
         Commands::Enhex(args) => {
-            crate::hex::encode(args);
+            hex::encode(args);
         }
         Commands::Dehex(args) => {
-            crate::hex::decode(args);
+            hex::decode(args);
         }
 
         Commands::Enhtml(args) => {
-            crate::html::encode(args);
+            html::encode(args);
         }
         Commands::Dehtml(args) => {
-            crate::html::decode(args);
+            html::decode(args);
         }
 
         Commands::Enurl(args) => {
