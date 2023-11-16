@@ -20,4 +20,4 @@ Converts:
 
 Encryption:
 
-- [ ] rot13
+- [x] rot13
