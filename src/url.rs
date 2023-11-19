@@ -1,24 +1,24 @@
 use clap::Args;
+use clap_stdin::MaybeStdin;
 
 #[derive(Args, Debug)]
 pub struct EnurlArgs {
-    pub toencode: Vec<String>,
+    pub toencode: MaybeStdin<String>,
 }
 
 #[derive(Args, Debug)]
 pub struct DeurlArgs {
-    pub todecode: String,
+    pub todecode: MaybeStdin<String>,
 }
 
 pub fn encode(args: EnurlArgs) {
-    let toencode = args.toencode.join(" ");
-
+    let toencode = args.toencode;
     let encoded = urlencoding::encode(&toencode);
-    println!("{}", encoded);
+    println!("{}", encoded)
 }
 
 pub fn decode(args: DeurlArgs) {
-    let todecode: String = args.todecode;
-    let decoded = urlencoding::decode(&todecode);
-    println!("{}", decoded.unwrap());
+    let todecode = args.todecode;
+    let decoded = urlencoding::decode(&todecode).unwrap();
+    println!("{}", decoded)
 }

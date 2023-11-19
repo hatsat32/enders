@@ -1,20 +1,21 @@
+use clap_stdin::MaybeStdin;
 use data_encoding::BASE32_NOPAD;
 
 use clap::Args;
 
 #[derive(Args, Debug)]
 pub struct Enb32Args {
-    toencode: Vec<String>,
+    toencode: MaybeStdin<String>,
 }
 
 #[derive(Args, Debug)]
 pub struct Deb32Args {
-    todecode: String,
+    todecode: MaybeStdin<String>,
 }
 
 pub fn encode(args: Enb32Args) {
     // let encoded: String = general_purpose::STANDARD_NO_PAD.encode(args.toencode.join(" "));
-    let encoded = BASE32_NOPAD.encode(args.toencode.join(" ").as_bytes());
+    let encoded = BASE32_NOPAD.encode(args.toencode.as_bytes());
     println!("{}", encoded);
 }
 

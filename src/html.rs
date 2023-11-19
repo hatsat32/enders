@@ -1,22 +1,24 @@
 use clap::Args;
+use clap_stdin::MaybeStdin;
 
 #[derive(Args, Debug)]
 pub struct EnHtmlArgs {
-    toencode: Vec<String>,
+    toencode: MaybeStdin<String>,
 }
 
 #[derive(Args, Debug)]
 pub struct DeHtmlArgs {
-    todecode: String,
+    todecode: MaybeStdin<String>,
 }
 
 pub fn encode(args: EnHtmlArgs) {
-    let toencode = args.toencode.join(" ");
+    let toencode = args.toencode.to_string();
     let encoded = html_escape::encode_text(&toencode);
     println!("{}", encoded);
 }
 
 pub fn decode(args: DeHtmlArgs) {
-    let decoded = html_escape::decode_html_entities(&args.todecode);
+    let toencode = args.todecode.to_string();
+    let decoded = html_escape::decode_html_entities(&toencode);
     println!("{}", decoded);
 }

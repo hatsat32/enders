@@ -37,21 +37,31 @@ Options:
 URL encode
 
 ```
-$ ende enurl hello world
+$ ende 'enurl hello world'
 hello%20world
 
-$ ende deurl hello%20world
+$ ende deurl 'hello%20world'
 hello world
 ```
 
 Base16
 
 ```
-$ ende enb16 hello world
+$ ende enb16 'hello world'
 68656C6C6F20776F726C64
 
 $ ende deb16 68656C6C6F20776F726C64
 hello world
+```
+
+Base64:
+
+```
+$ echo "asdf asdf" | ende enb64 -
+YXNkZiBhc2Rm
+
+$ echo YXNkZiBhc2Rm | ende deb64 -
+asdf asdf
 ```
 
 ## TODO
