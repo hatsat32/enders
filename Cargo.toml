@@ -10,6 +10,7 @@ base16 = "0.2.1"
 base64 = "0.21.5"
 clap = { version = "4.4.7", features = ["derive"] }
 clap-stdin = "0.2.1"
+clap_complete = "4.4.4"
 data-encoding = "2.4.0"
 html-escape = "0.2.13"
 urlencoding = "2.1.3"

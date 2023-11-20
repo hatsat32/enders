@@ -64,6 +64,14 @@ $ echo YXNkZiBhc2Rm | ende deb64 -
 asdf asdf
 ```
 
+## Shell Completion
+
+Ende supports bash, elvish, fish, powershell, zsh shell copletion.
+
+```shell
+$ source <(ende generate bash)
+```
+
 ## TODO
 
 Encodings:

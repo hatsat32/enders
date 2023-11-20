@@ -1,4 +1,7 @@
-use clap::{Parser, Subcommand};
+use std::io;
+
+use clap::{Args, Command, CommandFactory, Parser, Subcommand};
+use clap_complete::{generate, Generator, Shell};
 
 use crate::b16;
 use crate::b32;
@@ -9,7 +12,7 @@ use crate::rot13;
 use crate::url;
 
 /// Simple encode/decode tool written in rust!
-#[derive(Parser)]
+#[derive(Parser, Debug)]
 #[command(
     author = "hatsat32 <suleymanergen32@gmail.com>",
     version,
@@ -21,7 +24,7 @@ struct Cli {
     command: Commands,
 }
 
-#[derive(Subcommand)]
+#[derive(Subcommand, Debug)]
 enum Commands {
     /// base64 encode given text
     Enb64(b64::Enb64Args),
@@ -64,6 +67,15 @@ enum Commands {
 
     /// Rot13 encode given text
     Derot13(rot13::DeRot13Args),
+
+    /// Generate shell completion
+    Generate(GenerateArgs),
+}
+
+#[derive(Args, Debug)]
+struct GenerateArgs {
+    // Outputs the completion file for given shell
+    generator: Shell,
 }
 
 #[test]
@@ -124,5 +136,13 @@ pub fn run() {
         Commands::Derot13(args) => {
             rot13::decode(args);
         }
+        Commands::Generate(args) => {
+            let mut cmdc = Cli::command();
+            print_completions(args.generator, &mut cmdc);
+        }
     }
+}
+
+fn print_completions<G: Generator>(gen: G, cmd: &mut Command) {
+    generate(gen, cmd, cmd.get_name().to_string(), &mut io::stdout());
 }
